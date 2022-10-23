@@ -1,0 +1,3 @@
+com\komyshnyi\impl\convertor\EventConvertor.class
+com\komyshnyi\impl\exception\EntityRequestException.class
+com\komyshnyi\impl\EventServiceImpl.class

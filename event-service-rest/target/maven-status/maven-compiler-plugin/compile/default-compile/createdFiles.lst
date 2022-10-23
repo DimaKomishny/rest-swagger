@@ -1,0 +1,4 @@
+com\komyshnyi\rest\config\SwaggerConfig.class
+com\komyshnyi\rest\Application.class
+com\komyshnyi\rest\controller\ExceptionHandlerController.class
+com\komyshnyi\rest\controller\EventController.class

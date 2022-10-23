@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.komyshnyi</groupId>
+    <artifactId>event-service-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>event-service-api</module>
+        <module>event-service-dto</module>
+        <module>event-service-impl</module>
+        <module>event-service-rest</module>
+        <module>event-service-domain</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.version>3.8.0</maven.compiler.version>
+        <maven.shade.version>3.2.1</maven.shade.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <app.version>1.0-SNAPSHOT</app.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Modules -->
+            <dependency>
+                <groupId>com.komyshnyi</groupId>
+                <artifactId>event-service-api</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.komyshnyi</groupId>
+                <artifactId>event-service-dto</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.komyshnyi</groupId>
+                <artifactId>event-service-impl</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.komyshnyi</groupId>
+                <artifactId>event-service-rest</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.komyshnyi</groupId>
+                <artifactId>event-service-domain</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+            <!--Testing-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
