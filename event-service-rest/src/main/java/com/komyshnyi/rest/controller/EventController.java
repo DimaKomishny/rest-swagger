@@ -3,8 +3,11 @@ package com.komyshnyi.rest.controller;
 import com.komsyhnyi.dto.EventDto;
 import com.komyshnyi.api.service.EventService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +36,11 @@ public class EventController {
 
 
     @ApiOperation(value = "Get user by id")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Unable to find Event with id {id}",
+                    content = @Content)})
     @GetMapping("/{id}")
     public EventDto getEntityDto(@PathVariable("id") String id) {
         return service.getEvent(id);
@@ -63,9 +71,19 @@ public class EventController {
     }
 
     @PutMapping
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Event was not found"
+            ),
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Update existing event"
+            )
+    })
     public ResponseEntity<Map<String, String>> updatedEvent(@RequestBody EventDto eventDto) {
         service.updateEvent(eventDto);
         return new ResponseEntity<>(
-                Map.of(MESSAGE, String.format(UPDATE_MESSAGE, eventDto.getId())), HttpStatus.CREATED);
+                Map.of(MESSAGE, String.format(UPDATE_MESSAGE, eventDto.getId())), HttpStatus.OK);
     }
 }

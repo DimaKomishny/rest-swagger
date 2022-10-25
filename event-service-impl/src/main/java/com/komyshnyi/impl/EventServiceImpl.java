@@ -10,6 +10,7 @@ import com.komyshnyi.impl.exception.EntityRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -69,5 +70,7 @@ public class EventServiceImpl implements EventService {
         if (event.getId() == null) {
             throw new EntityRequestException("Event id is null");
         }
+        repository.findById(event.getId()).orElseThrow(() ->
+                new EntityNotFoundException("Unable to find Event with id " + event.getId()));
     }
 }
