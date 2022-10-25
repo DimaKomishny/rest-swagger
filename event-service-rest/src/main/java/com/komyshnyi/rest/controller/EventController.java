@@ -35,7 +35,7 @@ public class EventController {
     private final EventService service;
 
 
-    @ApiOperation(value = "Get user by id")
+    @ApiOperation(value = "Get event by id")
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "404",
@@ -46,7 +46,7 @@ public class EventController {
         return service.getEvent(id);
     }
 
-    @ApiOperation(value = "Get list of users by title")
+    @ApiOperation(value = "Get list of event by title")
     @GetMapping("/title/{title}")
     public List<EventDto> getAllByTitle(@PathVariable String title) {
         return service.getAllEventsByTitle(title);
